@@ -1,11 +1,19 @@
 <?php
 include 'database.php';
-
+$text = new Database();
+$id = $_GET['id'];
+$register = $text->display1('register','id='.$id);
+if (isset($_POST['add'])) {
+    $heading = $_POST['heading'];
+    $content = $_POST['content'];
+    $text->insert('data',['acount_id' => $id, 'heading' => $heading, 'content' => $content]);
+}
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,43 +21,70 @@ include 'database.php';
     <link rel="stylesheet" href="textkeep.css">
     <title>Text Keep</title>
 </head>
+
 <body>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;" >
-  <a class="navbar-brand" href="#">Text Keep</a>
-  <?php
-    if (isset($_GET['name'])) {
-        $name_id = $_GET['name'];
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">Text Keep</a>
+        <?php
+        if (isset($_GET['id'])) {
+            foreach ($register as $row){
         ?>
-        <a class="navbar-brand" style="background: #E3F2FD" href="#"><?php echo $name_id ?></a>
-    <?php
-    }
-  ?>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" style="background: #E3F2FD" href="C:\xampp\htdocs\googlekeep_php\register.php"><?php echo $row['name'] ?></a>
+        <?php
+            }
+        }
+        ?>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-        <ul class="navbar-nav d-flex p-2">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-  </div>
-</nav>
+            <ul class="navbar-nav d-flex p-2">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="textspace">
+        <form action="" method="post">
+            <div class="input-group mb-3">
+                <input name="heading" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="HEADING">
+            </div>
+            <div class="input-group mb-3">
+                <textarea name="content" id="" cols="100" rows="10" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></textarea>
+            </div>
+            <button name="add" >ADD</button>
+        </form>
+
+    </div>
+    <div id="cont" >
+        <div class="display">
+            <?php
+                $result = $text->display1('data','acount_id='.$id);
+                foreach($result as $row){
+                    ?><span id="spam"><?php echo $row['heading'];?></span>
+                    <span><?php echo $row['content']?></span>
+                    <?php
+                }
+                ?>
+        </div>
+    </div>
 
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>

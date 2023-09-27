@@ -7,9 +7,10 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     foreach ($result as $row){
-      $name_id= $row['name'];
+      // $name_id= $row['name'];
+      $id= $row['id'];
       if($row['email'] == $email && $row['password'] == $password){
-        header('location:http://localhost/googlekeep_php/text_keep/Text_Keep.php ?name='.$name_id);
+        header('location:http://localhost/googlekeep_php/text_keep/Text_Keep.php ?id='.$id);
       }else{
         echo 'login failed';
       }

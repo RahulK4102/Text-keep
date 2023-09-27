@@ -25,7 +25,7 @@ if (isset($_POST['register'])) {
     <section>
         <div class="form-box">
           <div class="form-value">
-            <form action="index.php" method="post">
+            <form action="" method="post">
               <h2>Register</h2>
               <div class="inputbox">
                 <input type="name" name="name" required >
