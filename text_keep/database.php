@@ -31,7 +31,6 @@ class Database{
             $table_value = implode("','",$param);
             
             $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_value')";
-           
             if($this->mysqli->query($sql)){
                 array_push($this->result,$this->mysqli->insert_id);
                 return true;
