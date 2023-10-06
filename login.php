@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
 <head>
   <meta charset="UTF-8">
   <title>Login form</title>
-  <link rel="stylesheet" href="Login.css">
+  <link rel="stylesheet" href="Login.css?">
 
 </head>
 <body>

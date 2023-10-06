@@ -28,9 +28,9 @@ class Database{
     public function insert($table,$param=array()){
         if($this->tableExits($table)){
             $table_columns = implode(',',array_keys($param));
-            $table_value = implode("','",$param);
-            
-            $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_value')";
+            $data = implode("','",$param);
+            $sql = "INSERT INTO $table ($table_columns) VALUES ('$data')";
+            echo $sql;
             if($this->mysqli->query($sql)){
                 array_push($this->result,$this->mysqli->insert_id);
                 return true;

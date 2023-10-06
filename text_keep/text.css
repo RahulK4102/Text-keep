@@ -24,25 +24,23 @@ body {
 
 #spam {
     display: block;
-    color: #BEFFF7;
+    color: black;
+    font-size: 23px;
 }
 
 span {
-    color: rgb(255, 0, 0);
+    color: white;
 }
 
 .abc {
     display: flex;
-    color: red;
+    color: white;
 }
 
 .content {
     border: 2px solid #fff;
     border-radius: 2rem;
 }
-
-
-
 
 ::selection {
     background: #212129;
@@ -51,14 +49,14 @@ span {
 .search-wrapper {
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 50%;
+    top: 27.2rem;
     left: 50%;
 }
 
 .search-wrapper.active {}
 
 .search-wrapper .input-holder {
-    height: 70px;
+    height: 63px;
     width: 70px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0);
@@ -102,8 +100,8 @@ span {
 }
 
 .search-wrapper .input-holder .search-icon {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border: none;
     border-radius: 6px;
     background: #FFF;

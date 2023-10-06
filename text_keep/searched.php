@@ -1,26 +1,17 @@
 <?php
 include 'database.php';
 $text = new Database();
-$id = $_GET['id'];
-$register = $text->display1('register', 'id=' . $id);
+$registered_id = $_GET['id'];
+$register = $text->display1('register', 'id=' . $registered_id);
 if (isset($_POST['add'])) {
     $heading = $_POST['heading'];
     $content = ($_POST['content']);
-    $text->insert('data', ['acount_id' => $id, 'heading' => $heading, 'content' => $content]);
+    $text->insert('data', ['acount_id' => $registered_id, 'heading' => $heading, 'content' => $content]);
 }
 if (isset($_GET['delete_id'])) {
     $id = $_GET['id'];
     $delete_id = $_GET['delete_id'];
     $text->delete('data', 'id=' . $delete_id);
-}
-if (isset($_POST['search_item'])) {
-    $search_item = $_POST['search'];
-    $search = $text->display1('data', 'heading=' . $search_item);
-    foreach ($search as $row) {
-        $id = $row['id'];
-        $acount_id =  $row['acount_id'];
-        header('location:http://localhost/googlekeep_php/text_keep/searched.php ?id='.$acount_id.'&search_id='.$id );
-    }
 }
 
 ?>
@@ -102,6 +93,11 @@ if (isset($_POST['search_item'])) {
 
 
 
+    <?php 
+    if(isset($_GET['search_id'])){
+        $search_id = $_GET['search_id'];
+        $id = $_GET['id'];
+        ?> 
     <div class="abc" style="
     display: flex;
     flex-direction: column;
@@ -109,7 +105,7 @@ if (isset($_POST['search_item'])) {
     margin-top: 2rem;
 ">
         <?php
-        $result = $text->display1('data', 'acount_id=' . $id);
+        $result = $text->display1('data', 'acount_id=' . $id.' AND id=' . $search_id);
         foreach ($result as $row) {
             $current_id = $row['id'];
             $acount_id = $row['acount_id'];
@@ -122,11 +118,15 @@ if (isset($_POST['search_item'])) {
                                 >
                 <span id="spam"><?php echo $row['heading']; ?></span>
                 <span><?php echo $row['content'] ?></span>
-                <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="display: flex;"  href='delete.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>' > DELETE </a>
+                <a href='Text_keep.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>'><button>DELETE</button></a>
             </div>
         <?php
         }
         ?>
+    </div>
+    <?php
+    }
+    ?>
     </div>
    
 
@@ -138,4 +138,9 @@ if (isset($_POST['search_item'])) {
 </body>
 
 </html>
+
+
+
+
+
 
