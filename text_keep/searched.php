@@ -24,13 +24,13 @@ if (isset($_GET['delete_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="text.css">
+    <link rel="stylesheet" href="text.css?">
     <title>Text Keep</title>
 </head>
 
 <body>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Text Keep</a>
+        <a class="navbar-brand" href="Text_keep.php?id=<?php echo $registered_id; ?>">Text Keep</a>
         <?php
         if (isset($_GET['id'])) {
             foreach ($register as $row) {
@@ -118,7 +118,7 @@ if (isset($_GET['delete_id'])) {
                                 >
                 <span id="spam"><?php echo $row['heading']; ?></span>
                 <span><?php echo $row['content'] ?></span>
-                <a href='Text_keep.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>'><button>DELETE</button></a>
+                <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href='delete.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>'>DELETE</a>
             </div>
         <?php
         }

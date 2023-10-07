@@ -30,7 +30,7 @@ class Database{
             $table_columns = implode(',',array_keys($param));
             $data = implode("','",$param);
             $sql = "INSERT INTO $table ($table_columns) VALUES ('$data')";
-            echo $sql;
+    
             if($this->mysqli->query($sql)){
                 array_push($this->result,$this->mysqli->insert_id);
                 return true;

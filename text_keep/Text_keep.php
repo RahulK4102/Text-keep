@@ -6,7 +6,13 @@ $register = $text->display1('register', 'id=' . $id);
 if (isset($_POST['add'])) {
     $heading = $_POST['heading'];
     $content = ($_POST['content']);
-    $text->insert('data', ['acount_id' => $id, 'heading' => $heading, 'content' => $content]);
+    if ($heading && $content) {
+        $text->insert('data', ['acount_id' => $id, 'heading' => $heading, 'content' => $content]);
+    }elseif (!$heading){
+        echo "Heading is empty";
+    }elseif (!$content){
+        echo "Content is empty";
+    }
 }
 if (isset($_GET['delete_id'])) {
     $id = $_GET['id'];
@@ -15,7 +21,9 @@ if (isset($_GET['delete_id'])) {
 }
 if (isset($_POST['search_item'])) {
     $search_item = $_POST['search'];
-    $search = $text->display1('data', 'heading=' . $search_item);
+    $result = " \"$search_item\"";
+    echo $result;
+    $search = $text->display1('data', 'heading=' . $result);
     foreach ($search as $row) {
         $id = $row['id'];
         $acount_id =  $row['acount_id'];
@@ -33,13 +41,13 @@ if (isset($_POST['search_item'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="text.css">
+    <link rel="stylesheet" href="text.css?">
     <title>Text Keep</title>
 </head>
 
 <body>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Text Keep</a>
+        <a class="navbar-brand" href="Text_keep.php?id=<?php echo $id; ?>">Text Keep</a>
         <?php
         if (isset($_GET['id'])) {
             foreach ($register as $row) {
@@ -122,7 +130,7 @@ if (isset($_POST['search_item'])) {
                                 >
                 <span id="spam"><?php echo $row['heading']; ?></span>
                 <span><?php echo $row['content'] ?></span>
-                <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="display: flex;"  href='delete.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>' > DELETE </a>
+                <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"  href='delete.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>' > DELETE </a>
             </div>
         <?php
         }
