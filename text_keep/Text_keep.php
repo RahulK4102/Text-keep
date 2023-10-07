@@ -8,9 +8,9 @@ if (isset($_POST['add'])) {
     $content = ($_POST['content']);
     if ($heading && $content) {
         $text->insert('data', ['acount_id' => $id, 'heading' => $heading, 'content' => $content]);
-    }elseif (!$heading){
+    } elseif (!$heading) {
         echo "Heading is empty";
-    }elseif (!$content){
+    } elseif (!$content) {
         echo "Content is empty";
     }
 }
@@ -27,7 +27,7 @@ if (isset($_POST['search_item'])) {
     foreach ($search as $row) {
         $id = $row['id'];
         $acount_id =  $row['acount_id'];
-        header('location:http://localhost/googlekeep_php/text_keep/searched.php ?id='.$acount_id.'&search_id='.$id );
+        header('location:http://localhost/googlekeep_php/text_keep/searched.php ?id=' . $acount_id . '&search_id=' . $id);
     }
 }
 
@@ -91,8 +91,8 @@ if (isset($_POST['search_item'])) {
             ">
                 <h1>OR</h1>
             </div>
-            <div class="input-group mb-3" >
-                <input type="file" id="myfile" name="myfile" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"  >
+            <div class="input-group mb-3">
+                <input type="file" id="myfile" name="my_file" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
             <button name="add">ADD</button>
         </form>
@@ -126,17 +126,16 @@ if (isset($_POST['search_item'])) {
                                 margin: 0px 5rem 0px;
                                 border: 2px solid #fff;
                                 border-radius: 1rem;
-                                padding:2rem;"
-                                >
+                                padding:2rem;">
                 <span id="spam"><?php echo $row['heading']; ?></span>
                 <span><?php echo $row['content'] ?></span>
-                <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"  href='delete.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>' > DELETE </a>
+                <a id="link_tag" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href='delete.php?delete_id=<?php echo $current_id ?>&id=<?php echo $acount_id ?>'> DELETE </a>
             </div>
         <?php
         }
         ?>
     </div>
-   
+
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="script.js"></script>
@@ -146,4 +145,3 @@ if (isset($_POST['search_item'])) {
 </body>
 
 </html>
-

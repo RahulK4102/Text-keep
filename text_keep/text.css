@@ -25,11 +25,12 @@ body {
 #spam {
     display: block;
     color: black;
-    font-size: 23px;
+    font-size: 30px;
 }
 
 span {
     color: white;
+    font-size: 1.5rem;
 }
 
 .abc {
@@ -200,6 +201,9 @@ span {
     left: 0px;
     top: 10px;
 }
-a{
+#link_tag{
     color: red;
+    position: absolute;
+    right: 7rem;
+    font-size: 1.5rem;
 }
